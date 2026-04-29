@@ -1,50 +1,68 @@
 # homelab-active-directory-rdp
 
-Active Directory lab with centralized RDP access using GPO and RBAC.
+Active Directory lab demonstrating centralized RDP access using Group Policy and RBAC.
 
-## What this project shows
+---
 
-* Centralized RDP access via Group Policy
-* Role-Based Access Control (RBAC)
-* No manual configuration on endpoints
+## Overview
+
+- Centralized RDP access via GPO
+- Role-Based Access Control (RBAC)
+- No manual configuration on endpoints
+
+---
 
 ## Architecture
 
-(images/architecture/architecture.png)
+![Architecture](images/architecture/architecture.png)
 
-* Proxmox (virtualization)
-* Windows Server (DC01)
-* Windows 11 (client)
+- Proxmox (virtualization)
+- DC01 – Windows Server (Domain Controller)
+- WS01 – Windows 11 (client)
 
-## Access Model (RBAC)
+---
 
-| Group            | Access                |
-| ---------------- | --------------------- |
-| IT_Admins        | Local Administrators  |
-| RDP_Users        | Remote Desktop access |
-| Accounting_Users | Department grouping   |
+## RBAC Model
 
-## GPO – Centralized Access
+| Group            | Access                    |
+|------------------|--------------------------|
+| IT_Admins        | Local Administrators     |
+| RDP_Users        | Remote Desktop access    |
+| Accounting_Users | Department-level grouping|
 
-(images/gpo/gpo-local-groups-rbac.png)
+---
 
-* `IT_Admins` → Administrators
-* `RDP_Users` → Remote Desktop Users
+## GPO Configuration
+
+![GPO RBAC](images/gpo/gpo-local-groups-rbac.png)
+
+Centralized group assignment via GPO:
+
+- `IT_Admins` → Local Administrators
+- `RDP_Users` → Remote Desktop Users
+
+---
 
 ## Security Baseline
 
-(images/gpo/gpo-security-baseline.png)
+![Security Baseline](images/gpo/gpo-security-baseline.png)
 
-* Guest account disabled
-* Last user hidden
-* Session timeout (300s)
+- Guest account disabled
+- Last logged-in user hidden
+- Session timeout: 300 seconds
 
-## Example Users
+---
 
-* IT Admin → `IT_Admins`, `RDP_Users`
-* Accounting → `Accounting_Users`, `RDP_Users`
-* Standard → `RDP_Users`
+## Example Access
 
-## Summary
+- IT Admin → `IT_Admins`, `RDP_Users`
+- Accounting User → `Accounting_Users`, `RDP_Users`
+- Standard User → `RDP_Users`
 
-Centralized Windows environment with RBAC and GPO automation.
+---
+
+## Result
+
+- Users gain RDP access through group membership only
+- No local configuration required
+- Fully centralized access control via GPO
