@@ -63,6 +63,11 @@ Centralized group assignment via GPO:
 
 ## Result
 
-- Users gain RDP access through group membership only
-- No local configuration required
-- Fully centralized access control via GPO
+![RDP Access](images/rdp/rdp-access.png)
+
+User gains RDP access via Active Directory group membership (`RDP_Users`) without any local configuration on the workstation.
+
+Verified using:
+- whoami
+- hostname
+- net user %username% /domain
