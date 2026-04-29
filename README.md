@@ -63,11 +63,11 @@ Centralized group assignment via GPO:
 
 ## Result
 
-![RDP Access](images/rdp-access-via-group.png)
+![RDP Access](images/rdp/rdp-access-via-group.png)
 
 User gains RDP access via Active Directory group membership (`RDP_Users`) without any local configuration.
 
-![RDP Restrictions](images/rdp-user-restrictions.png)
+![RDP Restrictions](images/rdp/rdp-user-restrictions.png)
 
 Access is restricted for unauthorized users by GPO.
 
